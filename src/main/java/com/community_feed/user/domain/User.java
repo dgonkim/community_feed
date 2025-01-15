@@ -1,5 +1,6 @@
 package com.community_feed.user.domain;
 
+import com.community_feed.common.domain.PositiveIntegerCounter;
 import lombok.Getter;
 
 import java.util.Objects;
@@ -9,14 +10,14 @@ public class User {
 
     private final Long id;
     private final UserInfo info;
-    private final UserRelationCounter followingCount;
-    private final UserRelationCounter followerCount;
+    private final PositiveIntegerCounter followingCount;
+    private final PositiveIntegerCounter followerCount;
 
-    public User(Long id, String name, UserInfo userInfo, UserRelationCounter followCount, UserRelationCounter followingCount, UserRelationCounter followerCount) {
+    public User(Long id, UserInfo userInfo) {
         this.id = id;
         this.info = userInfo;
-        this.followingCount = followingCount;
-        this.followerCount = followerCount;
+        this.followingCount = new PositiveIntegerCounter();
+        this.followerCount = new PositiveIntegerCounter();
     }
 
     public void follow(User targetUser) {
@@ -60,9 +61,9 @@ public class User {
         return id.equals(user.id);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id);
+//    }
 
 }
