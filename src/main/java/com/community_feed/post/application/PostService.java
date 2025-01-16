@@ -1,17 +1,14 @@
 package com.community_feed.post.application;
 
 import com.community_feed.post.application.dto.CreatePostRequestDto;
-import com.community_feed.post.application.dto.CreateUserRequestDto;
-import com.community_feed.post.application.dto.likePostRequestDto;
+import com.community_feed.post.application.dto.LikeRequestDto;
 import com.community_feed.post.application.interfaces.LikeRepository;
 import com.community_feed.post.application.interfaces.PostRepository;
-import com.community_feed.post.application.interfaces.UserRepository;
 import com.community_feed.post.domain.Post;
 import com.community_feed.post.domain.content.Content;
 import com.community_feed.post.domain.content.PostContent;
 import com.community_feed.user.application.UserService;
 import com.community_feed.user.domain.User;
-import com.community_feed.user.domain.UserInfo;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -40,7 +37,7 @@ public class PostService {
         return postRepository.save(post);
     }
 
-    public void likePost(likePostRequestDto dto) {
+    public void likePost(LikeRequestDto dto) {
         Post post = getPost(dto.postId());
         User user = userService.getUser(dto.userId());
 
@@ -53,7 +50,7 @@ public class PostService {
         likeRepository.like(post, user);
     }
 
-    public void unlikePost(likePostRequestDto dto) {
+    public void unlikePost(LikeRequestDto dto) {
         Post post = getPost(dto.postId());
         User user = userService.getUser(dto.userId());
 

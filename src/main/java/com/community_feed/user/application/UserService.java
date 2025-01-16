@@ -3,6 +3,7 @@ package com.community_feed.user.application;
 import com.community_feed.post.application.dto.CreateUserRequestDto;
 import com.community_feed.post.application.interfaces.UserRepository;
 import com.community_feed.user.domain.User;
+import com.community_feed.user.domain.UserInfo;
 
 public class UserService {
 
@@ -13,7 +14,9 @@ public class UserService {
     }
 
     public User createUser(CreateUserRequestDto dto){
-        return null;
+        UserInfo info = new UserInfo(dto.name(), dto.profileImageUrl());
+        User user = new User(null, info);
+        return userRepository.save(user);
     }
 
     public User getUser(Long id) {
