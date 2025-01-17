@@ -1,17 +1,24 @@
 package com.community_feed.user.domain;
 
 import com.community_feed.common.domain.PositiveIntegerCounter;
-import lombok.Getter;
+import jakarta.persistence.*;
+import lombok.*;
+import org.yaml.snakeyaml.events.Event;
 
 import java.util.Objects;
 
 @Getter
+@Builder
+@AllArgsConstructor
 public class User {
 
-    private final Long id;
-    private final UserInfo info;
-    private final PositiveIntegerCounter followingCount;
-    private final PositiveIntegerCounter followerCount;
+    private Long id;
+
+    private UserInfo info;
+
+    private PositiveIntegerCounter followingCount;
+
+    private PositiveIntegerCounter followerCount;
 
     public User(Long id, UserInfo userInfo) {
         this.id = id;
@@ -61,9 +68,28 @@ public class User {
         return id.equals(user.id);
     }
 
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(id);
-//    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return info.getName();
+    }
+
+    public String getProfileImage() {
+        return info.getProfileImageUrl();
+    }
+
+    public int getFollowingCount() {
+        return followingCount.getCount();
+    }
+
+    public int getFollowerCount() {
+        return followerCount.getCount();
+    }
 }

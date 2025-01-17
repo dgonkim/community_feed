@@ -5,14 +5,22 @@ import com.community_feed.post.domain.content.Content;
 import com.community_feed.post.domain.content.PostContent;
 import com.community_feed.user.domain.User;
 import com.community_feed.post.domain.content.PostPublicationState;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Builder
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Post {
 
-    private final Long id;
-    private final User author;
-//    private final Long authorId; // 글쓴이
-    private final Content content;
-    private final PositiveIntegerCounter likeCount;
+    private  Long id;
+    private  User author;
+//    private  Long authorId; // 글쓴이
+    private  Content content;
+    private  PositiveIntegerCounter likeCount;
     //특정 시점의 상태 state (ready 상태-> run 변경되는 경우) ,
     // 일련의 과정 중 결과로서의 상태 status (응답의 결과 http status)
     private PostPublicationState state;
@@ -68,4 +76,7 @@ public class Post {
         this.state = state;
     }
 
+    public String getContent() {
+        return content.getContentText();
+    }
 }
