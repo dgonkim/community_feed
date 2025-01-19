@@ -1,8 +1,8 @@
-package com.community_feed.common.repository.jpa;
+package com.community_feed.user.repository.jpa;
 
 import com.community_feed.user.application.dto.GetUserListResponseDto;
-import com.community_feed.user.repository.QUserEntity;
-import com.community_feed.user.repository.QUserRelationEntity;
+import com.community_feed.user.repository.entity.QUserEntity;
+import com.community_feed.user.repository.entity.QUserRelationEntity;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;

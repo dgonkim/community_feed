@@ -2,6 +2,7 @@ package com.community_feed.post.application;
 
 import com.community_feed.post.application.dto.CreatePostRequestDto;
 import com.community_feed.post.application.dto.LikeRequestDto;
+import com.community_feed.post.application.dto.UpdatePostRequestDto;
 import com.community_feed.post.application.interfaces.LikeRepository;
 import com.community_feed.post.application.interfaces.PostRepository;
 import com.community_feed.post.domain.Post;
@@ -10,7 +11,10 @@ import com.community_feed.post.domain.content.PostContent;
 import com.community_feed.user.application.UserService;
 import com.community_feed.user.domain.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Service
 @RequiredArgsConstructor
 public class PostService {
 
@@ -19,7 +23,7 @@ public class PostService {
     private final LikeRepository likeRepository;
 
     public Post getPost(Long id) {
-        return postRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        return postRepository.findById(id);
     }
 
     public Post createPost(CreatePostRequestDto dto) {
@@ -29,10 +33,10 @@ public class PostService {
         return postRepository.save(post);
     }
 
-    public Post updatePost(Long id, CreatePostRequestDto dto) {
+    @Transactional
+    public Post updatePost(Long id, UpdatePostRequestDto dto) {
         Post post = getPost(id);
         User user = userService.getUser(dto.userId());
-
         post.updatePost(user, dto.content(), dto.state());
         return postRepository.save(post);
     }

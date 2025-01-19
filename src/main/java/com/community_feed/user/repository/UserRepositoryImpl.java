@@ -1,13 +1,11 @@
-package com.community_feed.common.repository;
+package com.community_feed.user.repository;
 
-import com.community_feed.common.repository.jpa.JpaUserRepository;
+import com.community_feed.user.repository.jpa.JpaUserRepository;
 import com.community_feed.post.application.interfaces.UserRepository;
 import com.community_feed.user.domain.User;
-import com.community_feed.user.repository.UserEntity;
+import com.community_feed.user.repository.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-
-import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor

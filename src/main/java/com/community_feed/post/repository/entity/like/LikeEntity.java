@@ -4,9 +4,7 @@ import com.community_feed.common.repository.entity.TimeBaseEntity;
 import com.community_feed.post.domain.Post;
 import com.community_feed.post.domain.comment.Comment;
 import com.community_feed.user.domain.User;
-import com.community_feed.user.repository.UserRelationIdEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

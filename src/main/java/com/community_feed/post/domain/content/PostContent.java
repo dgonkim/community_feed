@@ -7,7 +7,7 @@ public class PostContent extends Content {
 
 
     public static final int POST_MAX_LENGTH = 500;
-    public static final int POST_MIN_LENGTH = 5;
+    public static final int POST_MIN_LENGTH = 0;
 
     public PostContent(String content) {
         super(content);
@@ -24,7 +24,7 @@ public class PostContent extends Content {
             throw new IllegalArgumentException();
         }
 
-        if (contentText.length() > POST_MIN_LENGTH) {
+        if (contentText.length() < POST_MIN_LENGTH) {
             throw new IllegalArgumentException();
         }
 

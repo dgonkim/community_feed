@@ -26,7 +26,8 @@ public class Comment {
         return new Comment(null, post, author, new CommentContent(content));
     }
 
-     public Comment(Long id, Post post, User author, Content content) {
+
+    public Comment(Long id, Post post, User author, Content content) {
 
         if (author == null) {
             throw new IllegalArgumentException();

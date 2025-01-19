@@ -3,7 +3,7 @@ package com.community_feed.post.domain.content;
 public class CommentContent extends Content{
 
     public static final int POST_MAX_LENGTH = 500;
-    public static final int POST_MIN_LENGTH = 5;
+    public static final int POST_MIN_LENGTH = 0;
 
     public CommentContent(String content) {
         super(content);
@@ -19,7 +19,7 @@ public class CommentContent extends Content{
             throw new IllegalArgumentException();
         }
 
-        if (contentText.length() > POST_MIN_LENGTH) {
+        if (contentText.length() < POST_MIN_LENGTH) {
             throw new IllegalArgumentException();
         }
     }

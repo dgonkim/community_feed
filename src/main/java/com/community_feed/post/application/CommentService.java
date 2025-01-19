@@ -10,7 +10,9 @@ import com.community_feed.post.domain.comment.Comment;
 import com.community_feed.user.application.UserService;
 import com.community_feed.user.domain.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
 @RequiredArgsConstructor
 public class CommentService {
 
@@ -20,20 +22,19 @@ public class CommentService {
     private final LikeRepository likeRepository;
 
     public Comment getComment(Long id) {
-        return commentRepository.findById(id).orElseThrow(IllegalAccessError::new);
+        return commentRepository.findById(id);
     }
 
 
-    public Comment createdComment(CreateCommentRequestDto dto) {
+    public Comment createComment(CreateCommentRequestDto dto) {
         Post post = postService.getPost(dto.postId());
         User user = userService.getUser(dto.userId());
-
         Comment comment = Comment.createComment(post, user, dto.content());
         return commentRepository.save(comment);
     }
 
-    public Comment updateComment(UpdateCommentRequestDto dto) {
-        Comment comment = getComment(dto.commentId());
+    public Comment updateComment(Long commentId, UpdateCommentRequestDto dto) {
+        Comment comment = getComment(commentId);
         User user = userService.getUser(dto.userId());
 
         comment.updateComment(user, dto.content());

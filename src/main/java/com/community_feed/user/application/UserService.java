@@ -2,6 +2,7 @@ package com.community_feed.user.application;
 
 import com.community_feed.post.application.dto.CreateUserRequestDto;
 import com.community_feed.post.application.interfaces.UserRepository;
+import com.community_feed.user.application.dto.GetUserResponseDto;
 import com.community_feed.user.domain.User;
 import com.community_feed.user.domain.UserInfo;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,11 @@ public class UserService {
 
     public User getUser(Long id) {
         return userRepository.findById(id);
+    }
+
+    public GetUserResponseDto getUserProfile(Long id) {
+        User user = getUser(id);
+        return new GetUserResponseDto(user);
     }
 
 }

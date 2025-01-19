@@ -1,4 +1,4 @@
-package com.community_feed.user.repository;
+package com.community_feed.user.repository.entity;
 
 import com.community_feed.common.domain.PositiveIntegerCounter;
 import com.community_feed.common.repository.entity.TimeBaseEntity;

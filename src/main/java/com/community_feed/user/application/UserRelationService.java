@@ -4,7 +4,9 @@ import com.community_feed.user.application.dto.FollowUserRequestDto;
 import com.community_feed.user.application.interfaces.UserRelationRepository;
 import com.community_feed.user.domain.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
 @RequiredArgsConstructor
 public class UserRelationService {
 
@@ -16,7 +18,7 @@ public class UserRelationService {
         User targetUser = userService.getUser(dto.targetUserId());
 
         if (userRelationRepository.isAlreadyFollow(user, targetUser)) {
-            throw new IllegalArgumentException();
+             throw new IllegalArgumentException();
         }
 
         user.follow(targetUser);
@@ -28,11 +30,10 @@ public class UserRelationService {
         User targetUser = userService.getUser(dto.targetUserId());
 
         if (userRelationRepository.isAlreadyFollow(user, targetUser)) {
-            throw new IllegalArgumentException();
+            user.unfollow(targetUser);
+            userRelationRepository.delete(user, targetUser);
         }
 
-        user.unfollow(targetUser);
-        userRelationRepository.delete(user, targetUser);
     }
 
 

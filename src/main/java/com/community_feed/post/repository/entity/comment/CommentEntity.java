@@ -4,7 +4,8 @@ import com.community_feed.common.domain.PositiveIntegerCounter;
 import com.community_feed.common.repository.entity.TimeBaseEntity;
 import com.community_feed.post.domain.comment.Comment;
 import com.community_feed.post.domain.content.CommentContent;
-import com.community_feed.user.repository.UserEntity;
+import com.community_feed.post.repository.entity.post.PostEntity;
+import com.community_feed.user.repository.entity.UserEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,8 +29,8 @@ public class CommentEntity extends TimeBaseEntity {
     private UserEntity author;
 
     @ManyToOne
-    @JoinColumn(name = "comment_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
-    private CommentEntity comment;
+    @JoinColumn(name = "post_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    private PostEntity post;
 
     private String content;
     private Integer likeCount;
@@ -37,6 +38,7 @@ public class CommentEntity extends TimeBaseEntity {
     public CommentEntity(Comment comment) {
         this.id = comment.getId();
         this.author = new UserEntity(comment.getAuthor());
+        this.post = new PostEntity(comment.getPost());
         this.content = comment.getContent();
         this.likeCount = comment.getLikeCount().getCount();
     }

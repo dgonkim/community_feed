@@ -40,8 +40,8 @@ public class User {
         if (this.equals(targetUser)) {
             throw new IllegalArgumentException();
         }
-        followingCount.decrease(); //following count 증가
-        targetUser.decreaseFollowerCount(); //나를 따르는 user의 followerCount 증가
+        followingCount.decrease(); //following count 감소
+        targetUser.decreaseFollowerCount(); //나를 따르는 user의 followerCount 감소
     }
 
     //해당 함수들은 외부로 노출할 필요가 없으므로 private 선언 -> 구지?

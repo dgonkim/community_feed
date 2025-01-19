@@ -1,4 +1,4 @@
-package com.community_feed.user.repository;
+package com.community_feed.user.repository.entity;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
@@ -17,7 +17,7 @@ import java.util.Objects;
 @NoArgsConstructor
 public class UserRelationIdEntity implements Serializable {
 
-    private Long followingUserId;
-    private Long followerUserId;
+    private Long followingUserId; //following하는 유저
+    private Long followerUserId; //following당하는 유저
 
 }

@@ -5,11 +5,12 @@ import com.community_feed.common.repository.entity.TimeBaseEntity;
 import com.community_feed.post.domain.Post;
 import com.community_feed.post.domain.content.PostContent;
 import com.community_feed.post.domain.content.PostPublicationState;
-import com.community_feed.user.repository.UserEntity;
+import com.community_feed.user.repository.entity.UserEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Getter
@@ -35,6 +36,9 @@ public class PostEntity extends TimeBaseEntity {
 
     private Integer likeCount;
 
+    @ColumnDefault("0")
+    private int commentCount;
+
     public PostEntity(Post post) {
         this.id = post.getId();
         this.author = new UserEntity(post.getAuthor());
@@ -52,5 +56,8 @@ public class PostEntity extends TimeBaseEntity {
                 .likeCount(new PositiveIntegerCounter(likeCount))
                 .build();
     }
+
+
+
 
 }
